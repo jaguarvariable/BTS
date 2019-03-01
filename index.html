@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Back To School</title>
+	<style type="text/css">
+	body{
+		padding: 0;
+		margin: 0;
+		font-family: Courier;
+		height: 100vh;
+	}
+	#shadow{
+		background: white;
+		width: 100vw;
+		height: 20vh;
+		opacity: 0.34;
+	}
+	#shadow2{
+		background: brown;
+		width: 100vw;
+		height: 5vh;
+
+	}
+	#shadow3{
+		background: green;
+		width: 100vw;
+		height: 5vh;
+
+	}
+	#shadow4{
+		background: purple;
+		width: 100vw;
+		height: 5vh;
+
+	}
+	#shadow5{
+		background: orange;
+		width: 100vw;
+		height: 5vh;
+
+	}
+	#text{
+		position: absolute;
+		top: 7vh;
+		left: 5.3vw;
+		width: 95%;
+
+	}
+	#text input{
+
+		font-family: Arial;
+		padding-left: 3vw;
+		font-size: 16pt;
+		height: 5vh;
+		width: 90%;
+	}
+	#overcan{
+		position: absolute;
+		top: 20vh;
+		background: black;
+		opacity: 0.5;
+		width: 50vw;
+		height: 78.92vh;
+	}
+	#canvas{
+		border-right: 1px solid gray;
+		width: 50vw;
+		height: 78.92vh;
+	}
+	#overshade{
+		color: white;
+		position: absolute;
+		z-index: 9999;
+		left: 5vw;
+		top: 40vh;
+	}
+	#overshade a{
+		padding: 5px;
+		border: 1px solid red;
+	}
+	#overframe{
+		position: absolute;
+		left: 60vw;
+		top: 25vh;
+	}
+	#iframe{
+		position: absolute;
+		width: 50vw;
+		left: 50vw;
+		top: 20vh;
+		height: 80vh;
+		border: none;
+	}
+	#opt{
+		position: absolute;
+		top: 6vh;
+		right: 5vw;
+		height: 8vh;
+		padding-left: 3vw;
+	}
+	</style>
+</head>
+<body id="thebod">
+<div id="shadow">
+	<div id="shadow2"></div>
+	<div id="shadow3"></div>
+	<div id="shadow4"></div>
+	<div id="shadow5"></div>
+</div>
+
+<div id="text">
+
+<input id="bordercolors" placeholder="Copy Code Here and Press Enter!" onclick="colorz()">
+
+</div>
+<select id="opt">
+	<option id="db1">DB1</option>
+	<option id="db2">DB2</option>
+</select>
+<div id="overshade">
+	<h3>Add This To Bookmark!</h3>
+	<div><a href='javascript: function getResult(){let axe = document.createElement("a");axe.setAttribute("id","axey");axe.setAttribute("style","position: absolute; top: 0; left: 45%;z-index: 9999; padding: 10px; border: 1px solid red; background: black; opacity: 0.7;");let azzey = document.createElement("input");azzey.setAttribute("style","");azzey.value = window.frames[0].ActivityKeys.resultKey;document.getElementById("lesson-pane-wrapper").appendChild(axe);document.getElementById("axey").innerHTML += "<br>5 seconds to Copy Code!<hr>";document.getElementById("axey").appendChild(azzey);setTimeout(function(){ document.getElementById("lesson-pane-wrapper").removeChild(axe); document.getElementById("axey").removeChild(azzey); },5000);} getResult();'>Drag Me!</a></div>
+	<h3>+BETA+ Answer Mult. Choice</h3>
+	<a href="javascript: function fillAnswer(){var correct = window.frames[0].API.Frame.StackProgress[0].TaskProgress[0].Text.substr(window.frames[0].frames[0].API.Frame.StackProgress[0].TaskProgress[0].Text.toString().indexOf("|SELECTED|")-6,6).toString();
+
+var correct1 = window.frames[0].API.Frame.StackProgress[1].TaskProgress[0].Text.substr(window.frames[0].frames[0].API.Frame.StackProgress[1].TaskProgress[0].Text.toString().indexOf("|SELECTED|")-6,6).toString();
+
+window.frames[0].frames[0].document.querySelectorAll('input[value="'+ correct +'"]')[0].click();
+window.frames[0].frames[0].document.querySelectorAll('input[value="'+ correct1 +'"]')[0].click();
+window.frames[0].document.querySelectorAll('input[value="'+ correct +'"]')[0].click();
+window.frames[0].document.querySelectorAll('input[value="'+ correct1 +'"]')[0].click();
+
+} fillAnswer();">Drag Me Too</a>
+	<h4>Tutorial is on Channel!</h4>
+</div>
+<div id="overcan"></div>
+<canvas id="canvas"></canvas>
+
+<iframe id="iframe"></iframe>
+
+<div id="overframe">Answers will appear here!</div>
+
+<script>
+
+	function getall(){
+		if(document.getElementById('db1').selected==true){
+      		    geta();
+    		}
+    		if(document.getElementById('db2').selected==true){
+       		 	getb();
+   			 }
+	}
+
+	document.addEventListener("keydown",function(e){
+		switch(e.keyCode){
+			case 13:
+			getall()
+			break;
+		}
+	});
+
+
+	let thebod = document.getElementById("thebod");
+
+
+	
+
+	let text = document.getElementById("bordercolors");
+	let color = "red";
+	
+	let ave = setInterval(function(){
+			colorz();
+			if(window.innerWidth <= 935){
+		thebod.setAttribute("style","display:none;");
+		}else {
+			thebod.setAttribute("style","");
+		}
+		},1000);
+
+	function colorz(){
+		color = "red";
+		if(text.value.length >= 10){
+			color = "green";
+		}
+		text.setAttribute("style","border: 3px solid "+color+";");
+
+	}
+
+
+
+
+	let canvas = document.getElementById("canvas");
+	let c = canvas.getContext("2d");
+
+	let colors = ["red","blue","green","cyan","purple","pink","gray","black"];
+
+	class createArc{
+		constructor(){
+			c.beginPath();
+			c.arc(Math.floor(Math.random()*300),Math.floor(Math.random()*180),5,0, Math.PI*2,true);
+			c.strokeStyle = colors[Math.floor(Math.random()*8)];
+			c.stroke();
+			c.closePath();
+		}
+	}
+
+	let dave = setInterval(function(){
+			new createArc();
+		},700);
+
+		function hide(){
+			var crack = document.getElementById('overframe');
+			crack.setAttribute("style","display:none");
+		}
+		function geta(){
+			var a = document.getElementById('bordercolors').value;
+			document.getElementById('iframe').setAttribute('src', 'https://r04.core.learn.edgenuity.com/ContentViewers/AssessmentViewer/PrintActivity?learningObjectKey=e0e4d4f2-b41b-11e2-aa12-bc764e043e0c&resultKey=' + a + ' &enrollmentKey=b0441e7a-73fc-e711-80f1-005056b56bcf&sessionKey=&lessonName=Your Welcome');
+			hide();
+		}
+		function getb(){
+			var a = document.getElementById('bordercolors').value;
+			document.getElementById('iframe').setAttribute('src','https://r04.core.learn.edgenuity.com/ContentViewers/AssessmentViewer/PrintActivity?learningObjectKey=6f9d8e65-6a62-6365-7473-000000000000&resultKey=' + a + '&enrollmentKey=0b6d3c1f-79fc-e711-80f1-005056b56bcf&sessionKey=&lessonName=Your Welcome');
+			hide();
+		}
+
+
+</script>
+
+</body>
+</html>
